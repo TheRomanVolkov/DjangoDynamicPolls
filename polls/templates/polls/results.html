@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Results for {{ poll.title }}{% endblock %}
+
+{% block header %}Results for "{{ poll.title }}"{% endblock %}
+
+{% block content %}
+    <div class="poll-results">
+        {% for question in questions %}
+            <div class="question">
+                <h3>{{ question.rank }}. {{ question.text }}</h3>
+                <p>Total responses: {{ question.responses_count }}</p>
+                <ul>
+                    {% for answer in question.answers %}
+                        <li>{{ answer.text }}: {{ answer.count }} votes ({{ answer.percentage|floatformat:2 }}%)</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
